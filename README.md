@@ -5,13 +5,17 @@
 * 인스타그램을 클론코딩하는 것이 목표.
 * 최대한 VanilaJS만을 활용해 화면 짜기.
 
-## nodejs_prac
+## nodejs_begin
 * 자바스크립트의 문법(반복문, 조건문, 자료구조 등등..)을 활용하는 것도 중요한 목표 중 하나.
 * javascript 런타임인 node.js의 여러가지 기능을 연습.
 * 여러가지 모듈 활용해보기 + 간단한 웹 서버를 구축.
 * 향후 진행할 express, next의 기반.
 
-## start_express
+## server_build
+* nodejs를 이용한 서버 만들기
+* 
+
+## express
 * 서버사이드 렌더링 방식
 * 간단한 웹 사이트를 제작해서 express로 배포
 

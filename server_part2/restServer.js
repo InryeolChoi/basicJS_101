@@ -53,18 +53,18 @@ const handlePutRequest = async (req, res) => {
     if (req.url.startsWith('/user/')) {
         const key = req.url.split('/');
         let body = '';
-        req.on('data', (data) => {
-            body += data;
-        })
-        return req.on('end', () => {
-            console.log(`POST 본문(body) : ${body}`);
-            users[key] = JSON.parse(body).name;
-            return res.end(JSON.stringify(users));
-        })
+
+        for await(const chunk of req) {
+            body += chunk;
+        }
+
+        console.log(`POST 본문(body) : ${body}`);
+        users[key] = JSON.parse(body).name;
+        res.end(JSON.stringify(users));
     }
 }
 
-const handleDeleteRequest = async (req, res) => {
+const handleDeleteRequest = (req, res) => {
     if (req.url.startsWith('/user/')) {
         const key = req.url.split('/');
         delete users[key];

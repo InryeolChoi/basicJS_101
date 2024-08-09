@@ -17,6 +17,9 @@
 * javascript 런타임인 node.js의 여러가지 기능 (특히 모듈 활용해보기)
 * 가장 중요한 개념인 비동기, 콜백함수, Promises, async/await에 초점을 맞추기.
 
+## prac_node2
+* 콜백함수를 async / await으로 바꿔주는 연습하기
+
 ## server_part1
 * nodejs를 이용한 기본적인 웹 서버 만들기
 * server-side rendering(SSR) 기반

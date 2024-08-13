@@ -4,6 +4,7 @@ import fs from 'fs/promises';
 const format = { 'Content-type': 'text/html; charset=utf-8' };
 const format2 = { 'Content-type': 'text/plain; charset=utf-8' };
 
+const users = {};
 
 const handleGetRequest = async (req, res) => {
     if (req.url === '/') {
@@ -33,7 +34,7 @@ const handleGetRequest = async (req, res) => {
 }
 
 const handlePostRequest = async (req, res) => {
-    if (req.url === '/') {
+    if (req.url === '/user') {
         let body = '';
         req.on('data', (data) => {
             body += data;
@@ -51,23 +52,25 @@ const handlePostRequest = async (req, res) => {
 
 const handlePutRequest = async (req, res) => {
     if (req.url.startsWith('/user/')) {
-        const key = req.url.split('/');
+        const key = req.url.split('/')[2];
         let body = '';
 
         for await(const chunk of req) {
             body += chunk;
         }
 
-        console.log(`POST 본문(body) : ${body}`);
+        console.log(`PUT 본문(body) : ${body}`);
         users[key] = JSON.parse(body).name;
+        res.writeHead(200, format2);
         res.end(JSON.stringify(users));
     }
 }
 
 const handleDeleteRequest = (req, res) => {
     if (req.url.startsWith('/user/')) {
-        const key = req.url.split('/');
+        const key = req.url.split('/')[2];
         delete users[key];
+        res.writeHead(200, format2);
         return res.end(JSON.stringify(users));
     }
     res.writeHead(404);
